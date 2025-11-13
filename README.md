@@ -29,16 +29,15 @@ pip install opencv-python mediapipe numpy
 - **Single index finger up:** drawing pauses so you can reposition without drawing extra lines.
 - **All five fingers open:** trigger the triangle calculation. The system measures two sides and computes the third using the Pythagorean theorem.
 - **Marking vertices:** place your fingertip over each triangle corner and press keys `1`, `2`, and `3` respectively. This explicit marking keeps the geometry clean and easy to measure.
-- **Enter real side lengths:** once the metrics block appears on screen, press `A`, `B`, or `C` to type the measured value for sides `AB`, `BC`, or `CA` (in any units you choose). The program maps those numbers to the actual sides you drew and uses only those values to compute the remaining side.
-- **Reset:** press `R` to clear the canvas, stored vertices, and any previously entered side lengths.
+- **Reset:** press `R` to clear the canvas and stored vertices.
 - **Quit:** press `Q` to close the application window.
 
 Once the three vertices are set and you open all fingers, the UI highlights the triangle, labels each side, and shows:
 
 - Lengths of sides AB, BC, and CA.
 - Which side is treated as the hypotenuse.
-- Which user-entered sides are already known (e.g., real-world units you typed via `A`, `B`, `C`).
-- The classic `c^2 = a^2 + b^2` / `b = sqrt(c^2 - a^2)` math, performed strictly on the user-entered numbers so that pixel distances are only used for visualization.
+- The formula `c^2 = a^2 + b^2` with the computed value for `c`.
+- If the hypotenuse and one leg are known, it also shows `b = sqrt(c^2 - a^2)`.
 
 ## Troubleshooting
 
@@ -53,6 +52,6 @@ Once the three vertices are set and you open all fingers, the UI highlights the 
   - Gesture recognition logic for drawing, pausing, and calculating.
   - Canvas overlay for rendering the virtual pen strokes.
   - Vertex collection via keyboard shortcuts and triangle measurement utilities.
-  - Pythagorean computations that determine the hypotenuse or unknown leg by pairing your typed values with the correct side labels (AB, BC, CA) rather than relying on raw pixel distances.
+  - Pythagorean computations that determine the hypotenuse or unknown leg based on the measured sides.
 
 Feel free to explore and tweak the thresholds or UI text to learn more about computer vision and interactive math visualizations!
